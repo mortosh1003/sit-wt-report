@@ -16,10 +16,9 @@ public class LoadFile {
 		String testFilePath = "C:\\Users\\Mr.Guest\\Desktop\\excel\\SampleTestScript.xlsx";
 
 		try (
-			// 1ファイルずつExcelのワークブックの読み込み 
-			//　TODO:指定フォルダすべてのxlsxファイルを読むようにする
-			Workbook book = new XSSFWorkbook(testFilePath);
-			) {
+			// 1ファイルずつExcelのワークブックの読み込み
+			// TODO:指定フォルダすべてのxlsxファイルを読むようにする
+			Workbook book = new XSSFWorkbook(testFilePath);) {
 
 			// シートの読み込み
 			Sheet sheet = book.getSheet("TestScript");
@@ -59,10 +58,10 @@ public class LoadFile {
 					default:
 						break;
 					}
-					
-					//1セルずつ出力
+
+					// 1セルずつ出力
 					System.out.println(rowIdx + ":" + colIdx + ":" + cellString);
-					//TODO 
+					// TODO
 				}
 			}
 		} catch (Exception e) {

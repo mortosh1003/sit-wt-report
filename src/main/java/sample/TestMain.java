@@ -17,60 +17,60 @@ import freemarker.template.Version;
 
 public class TestMain {
 
-    public static void main(String[] args) throws Exception {
-    	
-    	//Load EXCEL
-    	LoadFile test = new LoadFile();
-        
-    	// 1. Configure FreeMarker
-        //
-        // You should do this ONLY ONCE, when your application starts,
-        // then reuse the same Configuration object elsewhere.
+	public static void main(String[] args) throws Exception {
 
-        Configuration cfg = new Configuration();
+		// Load EXCEL
+		LoadFile test = new LoadFile();
 
-        // Where do we load the templates from:
-        cfg.setClassForTemplateLoading(TestMain.class, "templates");
+		// 1. Configure FreeMarker
+		//
+		// You should do this ONLY ONCE, when your application starts,
+		// then reuse the same Configuration object elsewhere.
 
-        // Some other recommended settings:
-        cfg.setIncompatibleImprovements(new Version(2, 3, 20));
-        cfg.setDefaultEncoding("UTF-8");
-        cfg.setLocale(Locale.US);
-        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+		Configuration cfg = new Configuration();
 
-        // 2. Proccess template(s)
-        //
-        // You will do this for several times in typical applications.
+		// Where do we load the templates from:
+		cfg.setClassForTemplateLoading(TestMain.class, "templates");
 
-        // 2.1. Prepare the template input:
+		// Some other recommended settings:
+		cfg.setIncompatibleImprovements(new Version(2, 3, 20));
+		cfg.setDefaultEncoding("UTF-8");
+		cfg.setLocale(Locale.US);
+		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
 
-        Map<String, Object> input = new HashMap<String, Object>();
+		// 2. Proccess template(s)
+		//
+		// You will do this for several times in typical applications.
 
-        input.put("title", "Report example");
+		// 2.1. Prepare the template input:
 
-        List<ValueExampleObject> systems = new ArrayList<ValueExampleObject>();
-        systems.add(new ValueExampleObject("dir1/dir2/TestScript1.xlsx", "case:001", "3"));
-        systems.add(new ValueExampleObject("dir1/dir2/TestScript1.xlsx", "case:002", "6"));
-        systems.add(new ValueExampleObject("dir1/dir2/TestScript2.xlsx", "case:001", "10"));
-        input.put("systems", systems);
+		Map<String, Object> input = new HashMap<String, Object>();
 
-        // 2.2. Get the template
+		input.put("title", "Report example");
 
-        Template template = cfg.getTemplate("OutputTemplate.ftl");
+		List<ValueExampleObject> systems = new ArrayList<ValueExampleObject>();
+		systems.add(new ValueExampleObject("dir1/dir2/TestScript1.xlsx", "case:001", "3"));
+		systems.add(new ValueExampleObject("dir1/dir2/TestScript1.xlsx", "case:002", "6"));
+		systems.add(new ValueExampleObject("dir1/dir2/TestScript2.xlsx", "case:001", "10"));
+		input.put("systems", systems);
 
-        // 2.3. Generate the output
+		// 2.2. Get the template
 
-        // Write output to the console
-        Writer consoleWriter = new OutputStreamWriter(System.out);
-        template.process(input, consoleWriter);
+		Template template = cfg.getTemplate("OutputTemplate.ftl");
 
-        // For the sake of example, also write output into a file:
-        Writer fileWriter = new FileWriter(new File("output.html"));
-        try {
-            template.process(input, fileWriter);
-        } finally {
-            fileWriter.close();
-        }
+		// 2.3. Generate the output
 
-    }
+		// Write output to the console
+		Writer consoleWriter = new OutputStreamWriter(System.out);
+		template.process(input, consoleWriter);
+
+		// For the sake of example, also write output into a file:
+		Writer fileWriter = new FileWriter(new File("output.html"));
+		try {
+			template.process(input, fileWriter);
+		} finally {
+			fileWriter.close();
+		}
+
+	}
 }
