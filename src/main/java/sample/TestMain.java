@@ -20,7 +20,7 @@ public class TestMain {
 	public static void main(String[] args) throws Exception {
 
 		// Load EXCEL
-		LoadFile test = new LoadFile();
+		//LoadFile test = new LoadFile();
 
 		// 1. Configure FreeMarker
 		//
